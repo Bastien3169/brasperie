@@ -91,6 +91,12 @@ h2 { font-size: 36px; }
   width: 44px; height: 44px; padding: 0;
   border: 0; background: transparent; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
+  /* Safari (iPhone) colore les boutons en bleu par défaut : les 3 traits
+     prennent la couleur du texte (currentColor), on la fixe donc ici. */
+  color: var(--anthracite);
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent; /* pas de flash gris au toucher */
 }
 
 /* Le menu est un « popover » HTML : il s'ouvre et se ferme avec le bouton
