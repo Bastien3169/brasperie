@@ -1,0 +1,263 @@
+/* =========================================================
+   La Brasperie — feuille de style unique
+   Mobile d'abord : les règles de base visent le téléphone,
+   les @media (min-width: …) plus bas adaptent à l'ordinateur.
+   ========================================================= */
+
+/* ---------- 1. Polices (hébergées sur le site, pas d'appel à Google) ---------- */
+@font-face {
+  font-family: "Amatic SC";
+  src: url("../fonts/amatic-sc-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archivo Narrow";
+  src: url("../fonts/archivo-narrow-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Archivo Narrow";
+  src: url("../fonts/archivo-narrow-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* ---------- 2. Couleurs et réglages (tirés des étiquettes) ---------- */
+:root {
+  --creme: #F4EADB;      /* fond */
+  --creme-fonce: #E2D5C1;/* séparateurs, cases vides */
+  --neige: #FBF8F2;
+  --anthracite: #2B3034; /* texte, pied de page (étiquette Stout) */
+  --gris: #4A4F55;       /* texte secondaire */
+  --orange: #E2672F;     /* accent : « BR », soleil (étiquette Ambrée) */
+  --canard: #1F7E87;     /* collines (étiquette IPA) */
+  --titre: "Amatic SC", "Archivo Narrow", sans-serif;
+  --texte: "Archivo Narrow", Arial, sans-serif;
+  --gouttiere: 16px;
+  --largeur-max: 1100px;
+}
+
+/* ---------- 3. Bases ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--anthracite);
+  font-family: var(--texte);
+  font-size: 17px;
+  line-height: 1.6;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--anthracite); }
+a:hover { color: #B04E1F; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+h1, h2, h3 {
+  font-family: var(--titre);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1px;
+  margin: 0;
+}
+h1 { font-size: 56px; }
+h2 { font-size: 36px; }
+.br { color: var(--orange); }           /* le « BR » de BRASPE */
+.muted { color: var(--gris); }
+.conteneur { width: 100%; max-width: var(--largeur-max); margin: 0 auto; padding: 0 var(--gouttiere); }
+.section { padding-top: 36px; }
+.section > h2 { margin-bottom: 14px; }
+.visuellement-cache {                   /* lisible par les lecteurs d'écran seulement */
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- 4. En-tête collant + menu ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--creme);
+  border-bottom: 1px solid var(--creme-fonce);
+}
+.site-header .conteneur {
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.marque { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.marque img { height: 44px; width: auto; }
+.marque span { font-family: var(--titre); font-weight: 700; font-size: 28px; letter-spacing: 1px; }
+
+.burger {
+  width: 44px; height: 44px; padding: 0;
+  border: 0; background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Le menu est un « popover » HTML : il s'ouvre et se ferme avec le bouton
+   burger, la touche Échap ou un clic à côté, sans une ligne de JavaScript. */
+#menu {
+  position: fixed; inset: 60px 0 auto 0;   /* collé sous l'en-tête */
+  width: 100%; margin: 0; padding: 8px 0 16px;
+  border: 0; border-bottom: 1px solid var(--creme-fonce);
+  background: var(--creme); color: var(--anthracite);
+}
+#menu ul { list-style: none; margin: 0; padding: 0; }
+#menu a {
+  display: block; padding: 10px var(--gouttiere);
+  font-family: var(--titre); font-weight: 700; font-size: 32px; letter-spacing: 1px;
+  text-decoration: none;
+}
+#menu a[aria-current="page"] { color: var(--orange); }
+
+/* ---------- 5. Illustration d'accueil + logo ---------- */
+.hero { display: block; width: 100%; height: clamp(330px, 40vw, 520px); }
+.badge-logo { display: flex; justify-content: center; margin-top: -100px; position: relative; }
+.badge-logo div {
+  width: 200px; height: 200px; border-radius: 50%;
+  background: var(--creme);
+  display: flex; align-items: center; justify-content: center;
+}
+.badge-logo img { width: 168px; }
+.intro { text-align: center; padding-top: 8px; }
+.intro h1 { font-size: 72px; letter-spacing: 3px; }
+.intro .slogan { font-family: var(--titre); font-weight: 700; font-size: 28px; line-height: 1.2; margin: 0; }
+.intro p { margin: 6px 0 0; }
+
+/* ---------- 6. Grille des bières ---------- */
+.grille-bieres {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.biere {
+  padding: 0; border: 0; background: transparent; color: inherit;
+  font: inherit; text-align: left; cursor: pointer;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.biere__fond {
+  height: 230px; background: var(--c);   /* --c = couleur de l'étiquette, posée dans le HTML */
+  display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+}
+.biere__fond img { height: 218px; width: auto; transition: transform .2s; }
+.biere:hover .biere__fond img { transform: translateY(-6px); }
+.biere__legende { display: flex; justify-content: space-between; align-items: baseline; }
+.biere__nom { font-family: var(--titre); font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: 1px; }
+.biere__degre { font-size: 15px; color: var(--gris); }
+.biere__bientot {
+  font-family: var(--titre); font-weight: 700; font-size: 40px; color: #5A5046;
+  align-self: center; margin: auto;
+}
+
+/* ---------- 7. Fiche d'une bière (popover) ---------- */
+.fiche {
+  width: min(92vw, 420px); padding: 0; border: 0;
+  background: var(--creme); color: var(--anthracite);
+}
+.fiche::backdrop { background: rgb(43 48 52 / .72); }
+.fiche__haut {
+  position: relative; height: 340px; background: var(--c);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.fiche__haut > svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 70px; }
+.fiche__haut img { position: relative; height: 320px; width: auto; }
+.fiche__fermer {
+  position: absolute; top: 8px; right: 8px;
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--creme); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.fiche__corps { padding: 20px 20px 24px; }
+.fiche__titre { font-size: 52px; letter-spacing: 2px; }
+.fiche__titre small { font-size: 40px; color: var(--c-texte, var(--anthracite)); margin-left: 8px; }
+.fiche__meta { margin: 8px 0; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--gris); }
+.fiche__corps p:last-child { margin: 0; }
+
+/* ---------- 8. Pages intérieures ---------- */
+.entete-page { padding-top: 32px; }
+.entete-page p { margin: 10px 0 0; }
+.encart {
+  margin-top: 24px; padding: 20px;
+  background: var(--anthracite); color: var(--creme);
+}
+.encart .etiquette { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+.encart h2 { color: var(--creme); margin: 6px 0 8px; }
+.encart p { margin: 0 0 8px; }
+.encart a { color: var(--creme); }
+.carte { margin-top: 24px; }
+.carte iframe { display: block; width: 100%; height: 360px; border: 0; background: var(--creme-fonce); }
+.carte p { margin: 6px 0 0; font-size: 15px; }
+.liste { list-style: none; margin: 0; padding: 0; }
+.liste li { padding: 12px 0; border-bottom: 1px solid var(--creme-fonce); display: flex; flex-direction: column; }
+.liste strong { font-weight: 600; }
+.liste span { font-size: 15px; color: var(--gris); }
+.photo-a-venir {
+  margin-top: 24px; min-height: 220px; background: var(--creme-fonce);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 600; color: #5A5046; text-align: center; padding: 16px;
+}
+.ingredients div { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--creme-fonce); }
+.ingredients dt { font-family: var(--titre); font-weight: 700; font-size: 30px; line-height: 1; min-width: 92px; color: #B04E1F; }
+.ingredients dd { margin: 0; }
+.bouton {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px;
+  border: 0; background: var(--anthracite); color: var(--creme);
+  font: 600 17px var(--texte); text-decoration: none; cursor: pointer;
+}
+.bouton:hover { background: #000; color: var(--creme); }
+.coordonnees { font-style: normal; margin-top: 24px; display: flex; flex-direction: column; gap: 6px; }
+.coordonnees h2 { margin-bottom: 6px; }
+.coordonnees a { font-weight: 600; font-size: 18px; }
+.formulaire { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; max-width: 560px; }
+.formulaire label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 15px; }
+.formulaire input, .formulaire textarea {
+  width: 100%; min-height: 44px; padding: 10px 12px;
+  border: 1.5px solid var(--anthracite); border-radius: 0;
+  background: var(--neige); color: var(--anthracite); font: 16px var(--texte);
+}
+.formulaire textarea { resize: vertical; }
+.formulaire .bouton { align-self: flex-start; }
+.pot-de-miel { display: none; }        /* champ piège anti-spam : invisible pour les humains */
+.texte-legal h2 { font-size: 30px; margin-top: 28px; }
+.texte-legal p { margin: 8px 0 0; }
+
+/* ---------- 9. Pied de page (avec la crête en séparation) ---------- */
+.site-footer { margin-top: 48px; }
+.site-footer > svg { display: block; width: 100%; height: 56px; }
+.site-footer .bas {
+  margin-top: -1px;
+  background: var(--anthracite); color: var(--creme);
+  padding: 20px 0 32px;
+}
+.site-footer .ligne { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.site-footer .nom { font-family: var(--titre); font-weight: 700; font-size: 32px; letter-spacing: 1px; }
+.site-footer p { margin: 14px 0 0; font-size: 15px; }
+.site-footer a { color: var(--creme); }
+.reseaux { display: flex; gap: 10px; }
+.reseaux a {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--creme);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ---------- 10. Ordinateur (à partir de 900 px de large) ---------- */
+@media (min-width: 900px) {
+  .burger { display: none; }
+  /* Sur grand écran, le menu n'est plus un popover : il est toujours visible. */
+  #menu {
+    display: block; position: static; inset: auto;
+    width: auto; padding: 0; border: 0; background: none; overflow: visible;
+  }
+  #menu ul { display: flex; gap: 28px; }
+  #menu a { padding: 0; font-size: 28px; }
+  #menu a:hover { color: var(--orange); }
+
+  h1 { font-size: 72px; }
+  .badge-logo { margin-top: -130px; }
+  .badge-logo div { width: 260px; height: 260px; }
+  .badge-logo img { width: 220px; }
+  .intro h1 { font-size: 96px; }
+  .grille-bieres { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .biere__fond { height: 300px; }
+  .biere__fond img { height: 285px; }
+  .deux-colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .carte iframe { height: 460px; }
+}
