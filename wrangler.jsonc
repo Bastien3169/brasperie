@@ -1,0 +1,17 @@
+// Réglages Cloudflare Workers pour le site de La Brasperie.
+// Ce fichier n'est pas du code : il dit seulement à Cloudflare comment publier le site.
+{
+  // Nom du projet : doit être identique au "Project name" saisi dans Cloudflare.
+  "name": "brasperie",
+
+  // Version de la plateforme Cloudflare utilisée (une date fixe, à ne pas toucher).
+  "compatibility_date": "2025-09-01",
+
+  // Le site est 100 % statique : pas de programme, uniquement des fichiers à servir.
+  "assets": {
+    // Les fichiers du site sont à la racine du dépôt.
+    "directory": "./",
+    // Adresse inconnue : afficher notre page 404.html (avec le bon code d'erreur 404).
+    "not_found_handling": "404-page"
+  }
+}
