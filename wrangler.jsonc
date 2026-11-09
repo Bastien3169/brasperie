@@ -7,6 +7,12 @@
   // Version de la plateforme Cloudflare utilisée (une date fixe, à ne pas toucher).
   "compatibility_date": "2025-09-01",
 
+  // Le site est servi uniquement sur www.brasperie.fr (réglé dans Cloudflare → Domains).
+  // On coupe l'adresse de test …workers.dev et les adresses d'aperçu,
+  // pour que Google ne voie qu'une seule copie du site.
+  "workers_dev": false,
+  "preview_urls": false,
+
   // Le site est 100 % statique : pas de programme, uniquement des fichiers à servir.
   "assets": {
     // Les fichiers du site sont à la racine du dépôt.
