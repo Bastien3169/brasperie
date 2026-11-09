@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Liste des pages à indexer. À mettre à jour si une page est ajoutée ou supprimée. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.brasperie.fr/</loc>
+  </url>
+  <url>
+    <loc>https://www.brasperie.fr/histoire</loc>
+  </url>
+  <url>
+    <loc>https://www.brasperie.fr/points-de-vente</loc>
+  </url>
+  <url>
+    <loc>https://www.brasperie.fr/contact</loc>
+  </url>
+  <url>
+    <loc>https://www.brasperie.fr/mentions-legales</loc>
+  </url>
+</urlset>

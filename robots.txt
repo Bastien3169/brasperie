@@ -1,0 +1,6 @@
+# Tous les robots peuvent lire tout le site
+User-agent: *
+Allow: /
+
+# Liste des pages du site
+Sitemap: https://www.brasperie.fr/sitemap.xml
